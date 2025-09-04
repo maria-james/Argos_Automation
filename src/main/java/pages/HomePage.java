@@ -31,14 +31,20 @@ public class HomePage {
    // Accept cookies if the popup appears   
    public void acceptCookiesIfPresent() {
     try {
+		Thread.sleep(3000); // wait for 3 seconds to allow popup to appear
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(8));
         WebElement acceptBtn = wait.until(
             ExpectedConditions.elementToBeClickable(acceptCookiesBtn)
         );
         acceptBtn.click();
+
+		Thread.sleep(2000); // wait for 2 seconds after clicking accept
+
     } catch (TimeoutException e) {
         // No cookie popup appeared, safe to continue
-    }
+    }catch (InterruptedException e) {
+		Thread.currentThread().interrupt();
+	}
    }
 
     // Enter product name in search input field and click search button	
