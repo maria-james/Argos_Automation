@@ -43,8 +43,8 @@ public class argosDef {
 	}	
 	 @Then("I should see search results for {string}")
     public void i_should_see_search_results_for(String product) {
-        Assert.assertTrue(search_obj.getResultsHeader().toLowerCase().contains(product.toLowerCase()),
-                "Search results do not match expected product");
+	   Assert.assertTrue(search_obj.isProductInSearchResults(product),
+            "Search results do not match expected product");
     }
 
     @When("I add the first product to the basket")
